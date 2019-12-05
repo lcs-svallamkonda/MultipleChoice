@@ -21,8 +21,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-//MARK: Actions
+    //MARK: Actions
     @IBAction func checkAnswers(_ sender: Any) {
+        //reset displayed text everytime button is pressed
+        displayedText.text = ""
+        
+        //guard against no input in the 'number of questions' text field
+        guard let numberOfQuestions = Int(numberOfQuestionsField.text!), numberOfQuestions > 0 else {
+            displayedText.text = "Please enter an integer greater than 0"
+            return
+        }
+
     }
 }
 
