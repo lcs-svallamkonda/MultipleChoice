@@ -49,6 +49,8 @@ class ViewController: UIViewController {
             return
         }
         
+        //create a string to represent the number of right answers the student has
+        var rightAnswers = 0
         
     }
 }
