@@ -40,10 +40,12 @@ class ViewController: UIViewController {
         //make sure the number of inputed student answers matches the number of questions on the test
         guard let studentAnswers = studentAnswersField.text, studentAnswers.count == numberOfQuestions else {
             displayedText.text  = "Please be sure you enter exactly \(numberOfQuestions) student answers"
+            return
         }
         
-        guard let correctAnswersAsString = correctAnswersField.text, let  else {
-            <#statements#>
+        guard let correctAnswers = correctAnswersField.text, correctAnswers.count == numberOfQuestions else {
+            displayedText.text = "Please be sure you enter exactly \(numberOfQuestions) correct answers"
+            return
         }
     }
 }
