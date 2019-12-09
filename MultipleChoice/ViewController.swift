@@ -43,10 +43,13 @@ class ViewController: UIViewController {
             return
         }
         
+       //make sure number of inputed correct answers matches the number of questions on the test
         guard let correctAnswers = correctAnswersField.text, correctAnswers.count == numberOfQuestions else {
             displayedText.text = "Please be sure you enter exactly \(numberOfQuestions) correct answers"
             return
         }
+        
+        
     }
 }
 
