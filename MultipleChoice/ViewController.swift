@@ -63,6 +63,8 @@ class ViewController: UIViewController {
                 rightAnswers += 1
             }
         }
+       //send the results to the view
+        displayedText.text = "The student aswered \(rightAnswers) question(s) correctly"
     }
 }
 
