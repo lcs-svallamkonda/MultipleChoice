@@ -27,11 +27,20 @@ class ViewController: UIViewController {
         displayedText.text = ""
         
         //guard against no input in the 'number of questions' text field
-        guard let numberOfQuestions = Int(numberOfQuestionsField.text!), numberOfQuestions > 0 else {
+//        guard let numberOfQuestions = Int(numberOfQuestionsField.text!), numberOfQuestions > 0 else {
+//            displayedText.text = "Please enter an integer greater than 0"
+//            return
+//        }
+        guard let numberOfQuestionsAsString = numberOfQuestionsField.text, let numberOfQuestions = Int(numberOfQuestionsAsString), numberOfQuestions > 0 else {
             displayedText.text = "Please enter an integer greater than 0"
             return
         }
-
+        
+        
+        //make sure the number of inputted answers matches the number of questions on the test
+        guard let studentAnswersAsString = studentAnswersField.text, let studentAnswers = Int(studentAnswersAsString), studentAnswers.count == numberOfQuestions else {
+            displayedText.text  = "Please be sure you enter exactly \(numberOfQuestions) student answers"
+        }
     }
 }
 
