@@ -52,6 +52,17 @@ class ViewController: UIViewController {
         //create a string to represent the number of right answers the student has
         var rightAnswers = 0
         
+        
+        //actually calculate the number of answers the student got right
+        for (position, answer) in studentAnswers.enumerated(){
+            //find the correct answer inputed in the same position as the student's answer
+            let teacherAnswerAsIndex = correctAnswers.index(correctAnswers.startIndex, offsetBy: position)
+            let TeacherAnswer = correctAnswers[teacherAnswerAsIndex]
+            //check if the student and teacher answers are the same, if they are, add one to "right answers" variables
+            if answer == TeacherAnswer {
+                rightAnswers += 1
+            }
+        }
     }
 }
 
