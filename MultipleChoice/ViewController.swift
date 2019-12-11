@@ -21,12 +21,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //make this class be the delegate for the number of questions text field
+        //make this class be the delegate for all of the text fields text field
         numberOfQuestionsField.delegate = self
         studentAnswersField.delegate = self
         correctAnswersField.delegate = self
         
-        //Give the focus to the input text view when the program begins
+        //Give the focus to the number of questions text view when the program begins
         numberOfQuestionsField.text = ""
         studentAnswersField.text = ""
         correctAnswersField.text = ""
@@ -42,10 +42,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         displayedText.text = ""
         
         //guard against no input in the 'number of questions' text field
-        //        guard let numberOfQuestions = Int(numberOfQuestionsField.text!), numberOfQuestions > 0 else {
-        //            displayedText.text = "Please enter an integer greater than 0"
-        //            return
-        //        }
         guard let numberOfQuestionsAsString = numberOfQuestionsField.text, let numberOfQuestions = Int(numberOfQuestionsAsString), numberOfQuestions > 0 else {
             displayedText.text = "Please enter an integer greater than 0"
             return
