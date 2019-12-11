@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         displayedText.text = ""
         numberOfQuestionsField.becomeFirstResponder() //set the focus on input field
         // Do any additional setup after loading the view.
-    
+        
     }
     
     //MARK: Actions
@@ -64,32 +64,48 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        //create a string to represent the number of right answers the student has
-        var rightAnswers = 0
-        
-        
-        //actually calculate the number of answers the student got right
-        for (position, answer) in studentAnswers.enumerated(){
-            //find the correct answer inputed in the same position as the student's answer
-            let teacherAnswerAsIndex = correctAnswers.index(correctAnswers.startIndex, offsetBy: position)
-            let TeacherAnswer = correctAnswers[teacherAnswerAsIndex]
-            //check if the student and teacher answers are the same, if they are, add one to "right answers" variables
-            if answer == TeacherAnswer {
-                rightAnswers += 1
+        //only allow ABCDE to be inputed into the student answer text field
+        let allowedLetters = "ABCDE"
+        for letter in studentAnswers {
+            if allowedLetters.contains(letter) == false {
+                displayedText.text = "Student answers contain invalid choices. Please ensure that only characters A,B,C,D or E are used."
+                return
+            }
+            
+            //only allow ABCDE to be inputed into the correct answer text field
+            for answer in correctAnswers {
+                if allowedLetters.contains(answer) == false {
+                    displayedText.text = "Correct answers contain invalid choices. Please ensure that only characters A,B,C,D or E are used."
+                    return
+                }
+                
+                //create a string to represent the number of right answers the student has
+                var rightAnswers = 0
+                
+                
+                //actually calculate the number of answers the student got right
+                for (position, answer) in studentAnswers.enumerated(){
+                    //find the correct answer inputed in the same position as the student's answer
+                    let teacherAnswerAsIndex = correctAnswers.index(correctAnswers.startIndex, offsetBy: position)
+                    let TeacherAnswer = correctAnswers[teacherAnswerAsIndex]
+                    //check if the student and teacher answers are the same, if they are, add one to "right answers" variables
+                    if answer == TeacherAnswer {
+                        rightAnswers += 1
+                    }
+                }
+                
+                //send the results to the view
+                displayedText.text = "The student aswered \(rightAnswers) question(s) correctly"
+                
+                
+            }
+            //MARK: UITextFieldDelagates Methods
+            //Called automatically when the contents of the text field are changed
+            func textFieldDidBeginEditing(_ textField: UITextField) {
+                
+                //Reset output text view
+                displayedText.text = ""
             }
         }
-        
-        //send the results to the view
-        displayedText.text = "The student aswered \(rightAnswers) question(s) correctly"
-        
-        
-        }
-    //MARK: UITextFieldDelagates Methods
-    //Called automatically when the contents of the text field are changed
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        //Reset output text view
-        displayedText.text = ""
     }
 }
-
